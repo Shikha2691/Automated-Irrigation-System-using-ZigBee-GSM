@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "fire_sensor", "fire_sensor\fire_sensor.cproj", "{135E2E09-46E5-4CAA-BFCB-5BEF3A4B3832}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{135E2E09-46E5-4CAA-BFCB-5BEF3A4B3832}.Debug|AVR.ActiveCfg = Debug|AVR
+		{135E2E09-46E5-4CAA-BFCB-5BEF3A4B3832}.Debug|AVR.Build.0 = Debug|AVR
+		{135E2E09-46E5-4CAA-BFCB-5BEF3A4B3832}.Release|AVR.ActiveCfg = Release|AVR
+		{135E2E09-46E5-4CAA-BFCB-5BEF3A4B3832}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

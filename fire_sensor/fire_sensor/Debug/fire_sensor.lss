@@ -1,0 +1,344 @@
+
+fire_sensor.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000001c4  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000012  00800060  000001c4  00000238  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  0000024a  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000048  00000000  00000000  0000027a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   000002fb  00000000  00000000  000002c2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000001b8  00000000  00000000  000005bd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   000001bd  00000000  00000000  00000775  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000080  00000000  00000000  00000934  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    000001b0  00000000  00000000  000009b4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    000000b2  00000000  00000000  00000b64  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000038  00000000  00000000  00000c16  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 ec       	ldi	r30, 0xC4	; 196
+  68:	f1 e0       	ldi	r31, 0x01	; 1
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 37       	cpi	r26, 0x72	; 114
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 62 00 	call	0xc4	; 0xc4 <main>
+  7a:	0c 94 e0 00 	jmp	0x1c0	; 0x1c0 <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <ADC_init>:
+#define buzzer (1<<2)
+#define SW (1<<7)
+#define s (PINC&SW)
+void ADC_init()
+{
+	DDRA = 0x00;
+  82:	1a ba       	out	0x1a, r1	; 26
+	ADMUX = 0x40;	
+  84:	80 e4       	ldi	r24, 0x40	; 64
+  86:	87 b9       	out	0x07, r24	; 7
+	ADCSRA = (1<<7)|(1<<2);
+  88:	84 e8       	ldi	r24, 0x84	; 132
+  8a:	86 b9       	out	0x06, r24	; 6
+  8c:	08 95       	ret
+
+0000008e <ADC_Read>:
+}
+
+int ADC_Read (int ch)
+{
+	int x;
+	ADMUX = (0x40)|ch;
+  8e:	80 64       	ori	r24, 0x40	; 64
+  90:	87 b9       	out	0x07, r24	; 7
+	ADCSRA |= (1<<ADSC);
+  92:	36 9a       	sbi	0x06, 6	; 6
+	while((ADCSRA & (1<< ADIF))==0);
+  94:	34 9b       	sbis	0x06, 4	; 6
+  96:	fe cf       	rjmp	.-4      	; 0x94 <ADC_Read+0x6>
+	x=ADC;
+  98:	84 b1       	in	r24, 0x04	; 4
+  9a:	95 b1       	in	r25, 0x05	; 5
+	//x = ADC | 0x3f;
+	return (x);
+}
+  9c:	08 95       	ret
+
+0000009e <ser_tx>:
+
+void ser_tx(char T)
+{
+	UDR = T;
+  9e:	8c b9       	out	0x0c, r24	; 12
+	while((UCSRA & (1<<UDRE))==0);
+  a0:	5d 9b       	sbis	0x0b, 5	; 11
+  a2:	fe cf       	rjmp	.-4      	; 0xa0 <ser_tx+0x2>
+}
+  a4:	08 95       	ret
+
+000000a6 <serial_string>:
+	rec = UDR;
+	return(rec);
+}
+
+void serial_string(char *ch)
+{
+  a6:	cf 93       	push	r28
+  a8:	df 93       	push	r29
+  aa:	ec 01       	movw	r28, r24
+	while(*ch!='\0')
+  ac:	88 81       	ld	r24, Y
+  ae:	88 23       	and	r24, r24
+  b0:	31 f0       	breq	.+12     	; 0xbe <serial_string+0x18>
+  b2:	21 96       	adiw	r28, 0x01	; 1
+	ser_tx(*ch++);
+  b4:	0e 94 4f 00 	call	0x9e	; 0x9e <ser_tx>
+	return(rec);
+}
+
+void serial_string(char *ch)
+{
+	while(*ch!='\0')
+  b8:	89 91       	ld	r24, Y+
+  ba:	81 11       	cpse	r24, r1
+  bc:	fb cf       	rjmp	.-10     	; 0xb4 <serial_string+0xe>
+	ser_tx(*ch++);
+}
+  be:	df 91       	pop	r29
+  c0:	cf 91       	pop	r28
+  c2:	08 95       	ret
+
+000000c4 <main>:
+
+int main(void)
+{
+	//DDRC=0x00; //configuring PortC pin 0 as input
+	//PORTC=0x00;
+	DDRB |= buzzer;
+  c4:	ba 9a       	sbi	0x17, 2	; 23
+	PORTB=0x00;
+  c6:	18 ba       	out	0x18, r1	; 24
+	//DDRA=0x00;
+	//unsigned int t;
+	UCSRB |= (1<<TXEN)|(1<<RXEN);
+  c8:	8a b1       	in	r24, 0x0a	; 10
+  ca:	88 61       	ori	r24, 0x18	; 24
+  cc:	8a b9       	out	0x0a, r24	; 10
+	UCSRC |= (1<<URSEL)|(1<<UCSZ1)|(1<<UCSZ0);
+  ce:	80 b5       	in	r24, 0x20	; 32
+  d0:	86 68       	ori	r24, 0x86	; 134
+  d2:	80 bd       	out	0x20, r24	; 32
+	UBRRL = 51;
+  d4:	83 e3       	ldi	r24, 0x33	; 51
+  d6:	89 b9       	out	0x09, r24	; 9
+	int val;
+	ADC_init();
+  d8:	0e 94 41 00 	call	0x82	; 0x82 <ADC_init>
+	while(1)
+	{
+
+		val = ADC_Read(2); 
+		serial_string("sensor value:");                                                
+		ser_tx((val/100)+48);
+  dc:	0f 2e       	mov	r0, r31
+  de:	f4 e6       	ldi	r31, 0x64	; 100
+  e0:	ef 2e       	mov	r14, r31
+  e2:	f1 2c       	mov	r15, r1
+  e4:	f0 2d       	mov	r31, r0
+		ser_tx(((val%100)/10)+48);
+  e6:	0a e0       	ldi	r16, 0x0A	; 10
+  e8:	10 e0       	ldi	r17, 0x00	; 0
+	
+	
+	while(1)
+	{
+
+		val = ADC_Read(2); 
+  ea:	82 e0       	ldi	r24, 0x02	; 2
+  ec:	90 e0       	ldi	r25, 0x00	; 0
+  ee:	0e 94 47 00 	call	0x8e	; 0x8e <ADC_Read>
+  f2:	ec 01       	movw	r28, r24
+		serial_string("sensor value:");                                                
+  f4:	80 e6       	ldi	r24, 0x60	; 96
+  f6:	90 e0       	ldi	r25, 0x00	; 0
+  f8:	0e 94 53 00 	call	0xa6	; 0xa6 <serial_string>
+		ser_tx((val/100)+48);
+  fc:	ce 01       	movw	r24, r28
+  fe:	b7 01       	movw	r22, r14
+ 100:	0e 94 b8 00 	call	0x170	; 0x170 <__divmodhi4>
+ 104:	ec 01       	movw	r28, r24
+ 106:	80 e3       	ldi	r24, 0x30	; 48
+ 108:	86 0f       	add	r24, r22
+ 10a:	0e 94 4f 00 	call	0x9e	; 0x9e <ser_tx>
+		ser_tx(((val%100)/10)+48);
+ 10e:	ce 01       	movw	r24, r28
+ 110:	b8 01       	movw	r22, r16
+ 112:	0e 94 b8 00 	call	0x170	; 0x170 <__divmodhi4>
+ 116:	c8 2f       	mov	r28, r24
+ 118:	80 e3       	ldi	r24, 0x30	; 48
+ 11a:	86 0f       	add	r24, r22
+ 11c:	0e 94 4f 00 	call	0x9e	; 0x9e <ser_tx>
+		ser_tx((((val%100)%10))+48);
+ 120:	80 e3       	ldi	r24, 0x30	; 48
+ 122:	8c 0f       	add	r24, r28
+ 124:	0e 94 4f 00 	call	0x9e	; 0x9e <ser_tx>
+		////ser_tx(((((val%1000)%100)%10)/10)+48);
+		serial_string("\r\n");
+ 128:	8e e6       	ldi	r24, 0x6E	; 110
+ 12a:	90 e0       	ldi	r25, 0x00	; 0
+ 12c:	0e 94 53 00 	call	0xa6	; 0xa6 <serial_string>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 130:	2f ef       	ldi	r18, 0xFF	; 255
+ 132:	83 ed       	ldi	r24, 0xD3	; 211
+ 134:	90 e3       	ldi	r25, 0x30	; 48
+ 136:	21 50       	subi	r18, 0x01	; 1
+ 138:	80 40       	sbci	r24, 0x00	; 0
+ 13a:	90 40       	sbci	r25, 0x00	; 0
+ 13c:	e1 f7       	brne	.-8      	; 0x136 <main+0x72>
+ 13e:	00 c0       	rjmp	.+0      	; 0x140 <main+0x7c>
+ 140:	00 00       	nop
+		_delay_ms(2000);
+		
+		 if(s==SW)            // check for sensor pin PC.3 using bit
+ 142:	9f 9b       	sbis	0x13, 7	; 19
+ 144:	d2 cf       	rjmp	.-92     	; 0xea <main+0x26>
+		 {
+			PORTB |= buzzer;
+ 146:	c2 9a       	sbi	0x18, 2	; 24
+ 148:	2f ef       	ldi	r18, 0xFF	; 255
+ 14a:	83 ed       	ldi	r24, 0xD3	; 211
+ 14c:	90 e3       	ldi	r25, 0x30	; 48
+ 14e:	21 50       	subi	r18, 0x01	; 1
+ 150:	80 40       	sbci	r24, 0x00	; 0
+ 152:	90 40       	sbci	r25, 0x00	; 0
+ 154:	e1 f7       	brne	.-8      	; 0x14e <main+0x8a>
+ 156:	00 c0       	rjmp	.+0      	; 0x158 <main+0x94>
+ 158:	00 00       	nop
+			_delay_ms(2000);
+			PORTB&=~ buzzer;
+ 15a:	c2 98       	cbi	0x18, 2	; 24
+ 15c:	2f ef       	ldi	r18, 0xFF	; 255
+ 15e:	83 ed       	ldi	r24, 0xD3	; 211
+ 160:	90 e3       	ldi	r25, 0x30	; 48
+ 162:	21 50       	subi	r18, 0x01	; 1
+ 164:	80 40       	sbci	r24, 0x00	; 0
+ 166:	90 40       	sbci	r25, 0x00	; 0
+ 168:	e1 f7       	brne	.-8      	; 0x162 <main+0x9e>
+ 16a:	00 c0       	rjmp	.+0      	; 0x16c <main+0xa8>
+ 16c:	00 00       	nop
+ 16e:	bd cf       	rjmp	.-134    	; 0xea <main+0x26>
+
+00000170 <__divmodhi4>:
+ 170:	97 fb       	bst	r25, 7
+ 172:	07 2e       	mov	r0, r23
+ 174:	16 f4       	brtc	.+4      	; 0x17a <__divmodhi4+0xa>
+ 176:	00 94       	com	r0
+ 178:	07 d0       	rcall	.+14     	; 0x188 <__divmodhi4_neg1>
+ 17a:	77 fd       	sbrc	r23, 7
+ 17c:	09 d0       	rcall	.+18     	; 0x190 <__divmodhi4_neg2>
+ 17e:	0e 94 cc 00 	call	0x198	; 0x198 <__udivmodhi4>
+ 182:	07 fc       	sbrc	r0, 7
+ 184:	05 d0       	rcall	.+10     	; 0x190 <__divmodhi4_neg2>
+ 186:	3e f4       	brtc	.+14     	; 0x196 <__divmodhi4_exit>
+
+00000188 <__divmodhi4_neg1>:
+ 188:	90 95       	com	r25
+ 18a:	81 95       	neg	r24
+ 18c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 18e:	08 95       	ret
+
+00000190 <__divmodhi4_neg2>:
+ 190:	70 95       	com	r23
+ 192:	61 95       	neg	r22
+ 194:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000196 <__divmodhi4_exit>:
+ 196:	08 95       	ret
+
+00000198 <__udivmodhi4>:
+ 198:	aa 1b       	sub	r26, r26
+ 19a:	bb 1b       	sub	r27, r27
+ 19c:	51 e1       	ldi	r21, 0x11	; 17
+ 19e:	07 c0       	rjmp	.+14     	; 0x1ae <__udivmodhi4_ep>
+
+000001a0 <__udivmodhi4_loop>:
+ 1a0:	aa 1f       	adc	r26, r26
+ 1a2:	bb 1f       	adc	r27, r27
+ 1a4:	a6 17       	cp	r26, r22
+ 1a6:	b7 07       	cpc	r27, r23
+ 1a8:	10 f0       	brcs	.+4      	; 0x1ae <__udivmodhi4_ep>
+ 1aa:	a6 1b       	sub	r26, r22
+ 1ac:	b7 0b       	sbc	r27, r23
+
+000001ae <__udivmodhi4_ep>:
+ 1ae:	88 1f       	adc	r24, r24
+ 1b0:	99 1f       	adc	r25, r25
+ 1b2:	5a 95       	dec	r21
+ 1b4:	a9 f7       	brne	.-22     	; 0x1a0 <__udivmodhi4_loop>
+ 1b6:	80 95       	com	r24
+ 1b8:	90 95       	com	r25
+ 1ba:	bc 01       	movw	r22, r24
+ 1bc:	cd 01       	movw	r24, r26
+ 1be:	08 95       	ret
+
+000001c0 <_exit>:
+ 1c0:	f8 94       	cli
+
+000001c2 <__stop_program>:
+ 1c2:	ff cf       	rjmp	.-2      	; 0x1c2 <__stop_program>
