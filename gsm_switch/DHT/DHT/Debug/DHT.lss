@@ -1,0 +1,867 @@
+
+DHT.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000003a2  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000002c  00800060  000003a2  00000436  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000007  0080008c  0080008c  00000462  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  00000464  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000097  00000000  00000000  00000b30  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000020  00000000  00000000  00000bc7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_pubnames 0000015a  00000000  00000000  00000be7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   0000070c  00000000  00000000  00000d41  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000261  00000000  00000000  0000144d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000005ab  00000000  00000000  000016ae  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  00000120  00000000  00000000  00001c5c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    00000200  00000000  00000000  00001d7c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    0000029c  00000000  00000000  00001f7c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_pubtypes 00000038  00000000  00000000  00002218  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 ea       	ldi	r30, 0xA2	; 162
+  68:	f3 e0       	ldi	r31, 0x03	; 3
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	ac 38       	cpi	r26, 0x8C	; 140
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	ac e8       	ldi	r26, 0x8C	; 140
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a3 39       	cpi	r26, 0x93	; 147
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 73 01 	call	0x2e6	; 0x2e6 <main>
+  8a:	0c 94 cf 01 	jmp	0x39e	; 0x39e <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <ser_tx>:
+unsigned data_byte;
+	uint8_t data[5];
+
+void ser_tx(unsigned char ch)
+{
+	UDR=ch;
+  92:	8c b9       	out	0x0c, r24	; 12
+	while((UCSRA&(1<<UDRE))==0);
+  94:	5d 9b       	sbis	0x0b, 5	; 11
+  96:	fe cf       	rjmp	.-4      	; 0x94 <ser_tx+0x2>
+}
+  98:	08 95       	ret
+
+0000009a <ser_rx>:
+
+unsigned char ser_rx()
+{
+	unsigned char R;
+	while((UCSRA&(1<<RXC))==0);
+  9a:	5f 9b       	sbis	0x0b, 7	; 11
+  9c:	fe cf       	rjmp	.-4      	; 0x9a <ser_rx>
+	R=UDR;
+  9e:	8c b1       	in	r24, 0x0c	; 12
+	return R;
+}
+  a0:	08 95       	ret
+
+000000a2 <ser_string>:
+
+void ser_string(char *ch)
+{
+  a2:	cf 93       	push	r28
+  a4:	df 93       	push	r29
+  a6:	ec 01       	movw	r28, r24
+	while(*ch!='\0')
+  a8:	88 81       	ld	r24, Y
+  aa:	88 23       	and	r24, r24
+  ac:	31 f0       	breq	.+12     	; 0xba <ser_string+0x18>
+	while((UCSRA&(1<<RXC))==0);
+	R=UDR;
+	return R;
+}
+
+void ser_string(char *ch)
+  ae:	21 96       	adiw	r28, 0x01	; 1
+{
+	while(*ch!='\0')
+	ser_tx(*ch++);
+  b0:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+	return R;
+}
+
+void ser_string(char *ch)
+{
+	while(*ch!='\0')
+  b4:	89 91       	ld	r24, Y+
+  b6:	88 23       	and	r24, r24
+  b8:	d9 f7       	brne	.-10     	; 0xb0 <ser_string+0xe>
+	ser_tx(*ch++);
+}
+  ba:	df 91       	pop	r29
+  bc:	cf 91       	pop	r28
+  be:	08 95       	ret
+
+000000c0 <send_message>:
+{
+	_delay_ms(500);
+}
+
+void send_message()
+{
+  c0:	1f 93       	push	r17
+  c2:	cf 93       	push	r28
+  c4:	df 93       	push	r29
+	ser_string("\r\nAT\r\n");
+  c6:	80 e6       	ldi	r24, 0x60	; 96
+  c8:	90 e0       	ldi	r25, 0x00	; 0
+  ca:	0e 94 51 00 	call	0xa2	; 0xa2 <ser_string>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  ce:	8f ef       	ldi	r24, 0xFF	; 255
+  d0:	94 e3       	ldi	r25, 0x34	; 52
+  d2:	ac e0       	ldi	r26, 0x0C	; 12
+  d4:	81 50       	subi	r24, 0x01	; 1
+  d6:	90 40       	sbci	r25, 0x00	; 0
+  d8:	a0 40       	sbci	r26, 0x00	; 0
+  da:	e1 f7       	brne	.-8      	; 0xd4 <send_message+0x14>
+  dc:	00 c0       	rjmp	.+0      	; 0xde <send_message+0x1e>
+  de:	00 00       	nop
+	_delay_ms(500);
+	//ser_string("\r\nATE0\r\n");
+	//_delay_ms(500);
+	ser_string("\r\nAT+CMGF=1\r\n");
+  e0:	87 e6       	ldi	r24, 0x67	; 103
+  e2:	90 e0       	ldi	r25, 0x00	; 0
+  e4:	0e 94 51 00 	call	0xa2	; 0xa2 <ser_string>
+  e8:	8f ef       	ldi	r24, 0xFF	; 255
+  ea:	94 e3       	ldi	r25, 0x34	; 52
+  ec:	ac e0       	ldi	r26, 0x0C	; 12
+  ee:	81 50       	subi	r24, 0x01	; 1
+  f0:	90 40       	sbci	r25, 0x00	; 0
+  f2:	a0 40       	sbci	r26, 0x00	; 0
+  f4:	e1 f7       	brne	.-8      	; 0xee <send_message+0x2e>
+  f6:	00 c0       	rjmp	.+0      	; 0xf8 <send_message+0x38>
+  f8:	00 00       	nop
+	_delay_ms(500);
+	ser_string("\r\nAT+CMGS=\"8586825196\"");
+  fa:	85 e7       	ldi	r24, 0x75	; 117
+  fc:	90 e0       	ldi	r25, 0x00	; 0
+  fe:	0e 94 51 00 	call	0xa2	; 0xa2 <ser_string>
+ 102:	8f ef       	ldi	r24, 0xFF	; 255
+ 104:	94 e3       	ldi	r25, 0x34	; 52
+ 106:	ac e0       	ldi	r26, 0x0C	; 12
+ 108:	81 50       	subi	r24, 0x01	; 1
+ 10a:	90 40       	sbci	r25, 0x00	; 0
+ 10c:	a0 40       	sbci	r26, 0x00	; 0
+ 10e:	e1 f7       	brne	.-8      	; 0x108 <send_message+0x48>
+ 110:	00 c0       	rjmp	.+0      	; 0x112 <send_message+0x52>
+ 112:	00 00       	nop
+	_delay_ms(500);
+	
+	  ser_tx('\r');
+ 114:	8d e0       	ldi	r24, 0x0D	; 13
+ 116:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+ 11a:	8f ef       	ldi	r24, 0xFF	; 255
+ 11c:	93 ec       	ldi	r25, 0xC3	; 195
+ 11e:	a9 e0       	ldi	r26, 0x09	; 9
+ 120:	81 50       	subi	r24, 0x01	; 1
+ 122:	90 40       	sbci	r25, 0x00	; 0
+ 124:	a0 40       	sbci	r26, 0x00	; 0
+ 126:	e1 f7       	brne	.-8      	; 0x120 <send_message+0x60>
+ 128:	00 c0       	rjmp	.+0      	; 0x12a <send_message+0x6a>
+ 12a:	00 00       	nop
+	  _delay_ms(400);
+	//  ser_string("ILLEGAL ATTEMPT TO ACCESS YOUR SYSTEM. KINDLY PAY ATTENTION");
+	  ser_tx('T');
+ 12c:	84 e5       	ldi	r24, 0x54	; 84
+ 12e:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+	  ser_tx((data[2]/10)+48);
+ 132:	80 91 90 00 	lds	r24, 0x0090
+ 136:	1a e0       	ldi	r17, 0x0A	; 10
+ 138:	61 2f       	mov	r22, r17
+ 13a:	0e 94 c3 01 	call	0x386	; 0x386 <__udivmodqi4>
+ 13e:	80 5d       	subi	r24, 0xD0	; 208
+ 140:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+	  ser_tx((data[2]%10)+48);
+ 144:	80 91 90 00 	lds	r24, 0x0090
+ 148:	61 2f       	mov	r22, r17
+ 14a:	0e 94 c3 01 	call	0x386	; 0x386 <__udivmodqi4>
+ 14e:	89 2f       	mov	r24, r25
+ 150:	80 5d       	subi	r24, 0xD0	; 208
+ 152:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+	  ser_tx('H');
+ 156:	88 e4       	ldi	r24, 0x48	; 72
+ 158:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+	  ser_tx((data[0]/10)+48);
+ 15c:	ce e8       	ldi	r28, 0x8E	; 142
+ 15e:	d0 e0       	ldi	r29, 0x00	; 0
+ 160:	88 81       	ld	r24, Y
+ 162:	61 2f       	mov	r22, r17
+ 164:	0e 94 c3 01 	call	0x386	; 0x386 <__udivmodqi4>
+ 168:	80 5d       	subi	r24, 0xD0	; 208
+ 16a:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+	  ser_tx((data[0]%10)+48);
+ 16e:	88 81       	ld	r24, Y
+ 170:	61 2f       	mov	r22, r17
+ 172:	0e 94 c3 01 	call	0x386	; 0x386 <__udivmodqi4>
+ 176:	89 2f       	mov	r24, r25
+ 178:	80 5d       	subi	r24, 0xD0	; 208
+ 17a:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+ 17e:	8f ef       	ldi	r24, 0xFF	; 255
+ 180:	94 e3       	ldi	r25, 0x34	; 52
+ 182:	ac e0       	ldi	r26, 0x0C	; 12
+ 184:	81 50       	subi	r24, 0x01	; 1
+ 186:	90 40       	sbci	r25, 0x00	; 0
+ 188:	a0 40       	sbci	r26, 0x00	; 0
+ 18a:	e1 f7       	brne	.-8      	; 0x184 <send_message+0xc4>
+ 18c:	00 c0       	rjmp	.+0      	; 0x18e <send_message+0xce>
+ 18e:	00 00       	nop
+	  
+	  _delay_ms(500);
+	  
+	  ser_tx(0x1A);
+ 190:	8a e1       	ldi	r24, 0x1A	; 26
+ 192:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+}
+ 196:	df 91       	pop	r29
+ 198:	cf 91       	pop	r28
+ 19a:	1f 91       	pop	r17
+ 19c:	08 95       	ret
+
+0000019e <separate_byte_serial>:
+	//{
+	////serial_string("Humidity :: ");
+	//ser_tx('H');ser_tx((c/10)+48);ser_tx((c%10)+48);
+	//ser_string("\r\n");
+    //}
+}
+ 19e:	08 95       	ret
+
+000001a0 <dht11SamplePin>:
+	}	
+	else return false;
+		
+}
+
+bool dht11SamplePin()  //read pin's state , the pin that connect to the sensor
+ 1a0:	81 e0       	ldi	r24, 0x01	; 1
+ 1a2:	98 9b       	sbis	0x13, 0	; 19
+ 1a4:	80 e0       	ldi	r24, 0x00	; 0
+{
+	if (CHECKBIT(DHT11_PIN,DHT11_PIN_NUM) == _BV(DHT11_PIN_NUM)) return true;
+	else return false;
+}
+ 1a6:	08 95       	ret
+
+000001a8 <dht11SampleData>:
+	return data;
+	
+}
+
+bool dht11SampleData() 
+{
+ 1a8:	cf 93       	push	r28
+ 1aa:	df 93       	push	r29
+	uint16_t loopCnt;
+	loopCnt=TIME_OUT_LOOP;
+ 1ac:	c4 ef       	ldi	r28, 0xF4	; 244
+ 1ae:	d1 e0       	ldi	r29, 0x01	; 1
+	
+	while(!dht11SamplePin())  //wait for the first 50us while the pin is low
+ 1b0:	02 c0       	rjmp	.+4      	; 0x1b6 <dht11SampleData+0xe>
+	{
+		loopCnt--;
+ 1b2:	21 97       	sbiw	r28, 0x01	; 1
+		if (loopCnt==0) return false; //time out
+ 1b4:	89 f0       	breq	.+34     	; 0x1d8 <dht11SampleData+0x30>
+bool dht11SampleData() 
+{
+	uint16_t loopCnt;
+	loopCnt=TIME_OUT_LOOP;
+	
+	while(!dht11SamplePin())  //wait for the first 50us while the pin is low
+ 1b6:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <dht11SamplePin>
+ 1ba:	88 23       	and	r24, r24
+ 1bc:	d1 f3       	breq	.-12     	; 0x1b2 <dht11SampleData+0xa>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1be:	88 e7       	ldi	r24, 0x78	; 120
+ 1c0:	8a 95       	dec	r24
+ 1c2:	f1 f7       	brne	.-4      	; 0x1c0 <dht11SampleData+0x18>
+		if (loopCnt==0) return false; //time out
+	}
+	
+	_delay_us(45); //delay 45us
+	
+	if (dht11SamplePin())
+ 1c4:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <dht11SamplePin>
+ 1c8:	88 23       	and	r24, r24
+ 1ca:	41 f0       	breq	.+16     	; 0x1dc <dht11SampleData+0x34>
+	{	
+		while(dht11SamplePin());
+ 1cc:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <dht11SamplePin>
+ 1d0:	88 23       	and	r24, r24
+ 1d2:	e1 f7       	brne	.-8      	; 0x1cc <dht11SampleData+0x24>
+		return true;
+ 1d4:	81 e0       	ldi	r24, 0x01	; 1
+ 1d6:	03 c0       	rjmp	.+6      	; 0x1de <dht11SampleData+0x36>
+	loopCnt=TIME_OUT_LOOP;
+	
+	while(!dht11SamplePin())  //wait for the first 50us while the pin is low
+	{
+		loopCnt--;
+		if (loopCnt==0) return false; //time out
+ 1d8:	80 e0       	ldi	r24, 0x00	; 0
+ 1da:	01 c0       	rjmp	.+2      	; 0x1de <dht11SampleData+0x36>
+	if (dht11SamplePin())
+	{	
+		while(dht11SamplePin());
+		return true;
+	}	
+	else return false;
+ 1dc:	80 e0       	ldi	r24, 0x00	; 0
+		
+}
+ 1de:	df 91       	pop	r29
+ 1e0:	cf 91       	pop	r28
+ 1e2:	08 95       	ret
+
+000001e4 <dht11ReadOneBitData>:
+	}
+	}
+}	
+
+uint8_t dht11ReadOneBitData()
+{
+ 1e4:	ef 92       	push	r14
+ 1e6:	ff 92       	push	r15
+ 1e8:	1f 93       	push	r17
+ 1ea:	cf 93       	push	r28
+ 1ec:	df 93       	push	r29
+ 1ee:	c7 e0       	ldi	r28, 0x07	; 7
+ 1f0:	d0 e0       	ldi	r29, 0x00	; 0
+	unsigned int data_bit;
+	uint8_t data=0;
+ 1f2:	10 e0       	ldi	r17, 0x00	; 0
+		{
+			SETBIT (data,(data_bit)-1);
+		}
+		else
+		{
+			CLEARBIT (data,(data_bit)-1);
+ 1f4:	ee 24       	eor	r14, r14
+ 1f6:	ff 24       	eor	r15, r15
+ 1f8:	e3 94       	inc	r14
+	unsigned int data_bit;
+	uint8_t data=0;
+	
+	for (data_bit=8;data_bit>0;(data_bit)--) //read 8 bit of data, the sensor send MSB first
+	{
+		if(dht11SampleData()) 
+ 1fa:	0e 94 d4 00 	call	0x1a8	; 0x1a8 <dht11SampleData>
+ 1fe:	88 23       	and	r24, r24
+ 200:	49 f0       	breq	.+18     	; 0x214 <dht11ReadOneBitData+0x30>
+		{
+			SETBIT (data,(data_bit)-1);
+ 202:	c7 01       	movw	r24, r14
+ 204:	0c 2e       	mov	r0, r28
+ 206:	02 c0       	rjmp	.+4      	; 0x20c <dht11ReadOneBitData+0x28>
+ 208:	88 0f       	add	r24, r24
+ 20a:	99 1f       	adc	r25, r25
+ 20c:	0a 94       	dec	r0
+ 20e:	e2 f7       	brpl	.-8      	; 0x208 <dht11ReadOneBitData+0x24>
+ 210:	18 2b       	or	r17, r24
+ 212:	09 c0       	rjmp	.+18     	; 0x226 <dht11ReadOneBitData+0x42>
+		}
+		else
+		{
+			CLEARBIT (data,(data_bit)-1);
+ 214:	c7 01       	movw	r24, r14
+ 216:	0c 2e       	mov	r0, r28
+ 218:	02 c0       	rjmp	.+4      	; 0x21e <dht11ReadOneBitData+0x3a>
+ 21a:	88 0f       	add	r24, r24
+ 21c:	99 1f       	adc	r25, r25
+ 21e:	0a 94       	dec	r0
+ 220:	e2 f7       	brpl	.-8      	; 0x21a <dht11ReadOneBitData+0x36>
+ 222:	80 95       	com	r24
+ 224:	18 23       	and	r17, r24
+ 226:	21 97       	sbiw	r28, 0x01	; 1
+uint8_t dht11ReadOneBitData()
+{
+	unsigned int data_bit;
+	uint8_t data=0;
+	
+	for (data_bit=8;data_bit>0;(data_bit)--) //read 8 bit of data, the sensor send MSB first
+ 228:	3f ef       	ldi	r19, 0xFF	; 255
+ 22a:	cf 3f       	cpi	r28, 0xFF	; 255
+ 22c:	d3 07       	cpc	r29, r19
+ 22e:	29 f7       	brne	.-54     	; 0x1fa <dht11ReadOneBitData+0x16>
+		}
+	}
+	
+	return data;
+	
+}
+ 230:	81 2f       	mov	r24, r17
+ 232:	df 91       	pop	r29
+ 234:	cf 91       	pop	r28
+ 236:	1f 91       	pop	r17
+ 238:	ff 90       	pop	r15
+ 23a:	ef 90       	pop	r14
+ 23c:	08 95       	ret
+
+0000023e <dht11InputMode>:
+	else return false;
+}
+
+void dht11InputMode() //set the pin connect to the sensor as input mode
+{
+	CLEARBIT(DHT11_DDR,DHT11_PIN_NUM);
+ 23e:	a0 98       	cbi	0x14, 0	; 20
+}
+ 240:	08 95       	ret
+
+00000242 <dht11OutputMode>:
+
+void dht11OutputMode() //set the pin connect to the sensor as output mode
+{
+	SETBIT(DHT11_DDR,DHT11_PIN_NUM);
+ 242:	a0 9a       	sbi	0x14, 0	; 20
+}
+ 244:	08 95       	ret
+
+00000246 <dht11PullHigh>:
+
+void dht11PullHigh() //pull the pin connect to the sensor high
+{
+	SETBIT(DHT11_PORT,DHT11_PIN_NUM);
+ 246:	a8 9a       	sbi	0x15, 0	; 21
+}
+ 248:	08 95       	ret
+
+0000024a <dht11PullLow>:
+
+void dht11PullLow() //pull the pin connect to the sensor low
+{
+	CLEARBIT(DHT11_PORT,DHT11_PIN_NUM);
+ 24a:	a8 98       	cbi	0x15, 0	; 21
+}
+ 24c:	08 95       	ret
+
+0000024e <dht11StartSignal>:
+
+void dht11StartSignal() //send start signal to dht11 sensor
+{	
+	dht11OutputMode();
+ 24e:	0e 94 21 01 	call	0x242	; 0x242 <dht11OutputMode>
+	dht11PullLow(); //set dht11_pin LOW for at least 18ms, refer to dht11 data sheet
+ 252:	0e 94 25 01 	call	0x24a	; 0x24a <dht11PullLow>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 256:	8f e9       	ldi	r24, 0x9F	; 159
+ 258:	9c e8       	ldi	r25, 0x8C	; 140
+ 25a:	01 97       	sbiw	r24, 0x01	; 1
+ 25c:	f1 f7       	brne	.-4      	; 0x25a <dht11StartSignal+0xc>
+ 25e:	00 c0       	rjmp	.+0      	; 0x260 <dht11StartSignal+0x12>
+ 260:	00 00       	nop
+	_delay_ms(18);
+	dht11PullHigh(); //set dht11_pin HIGH for 20-40us, refer to dht11 data sheet
+ 262:	0e 94 23 01 	call	0x246	; 0x246 <dht11PullHigh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 266:	9a e6       	ldi	r25, 0x6A	; 106
+ 268:	9a 95       	dec	r25
+ 26a:	f1 f7       	brne	.-4      	; 0x268 <dht11StartSignal+0x1a>
+ 26c:	00 c0       	rjmp	.+0      	; 0x26e <dht11StartSignal+0x20>
+	_delay_us(40);
+	dht11InputMode(); //set dht11_pin as input, release the pin, wait for respond
+ 26e:	0e 94 1f 01 	call	0x23e	; 0x23e <dht11InputMode>
+}
+ 272:	08 95       	ret
+
+00000274 <dht11CheckAck>:
+
+bool dht11CheckAck() //check respond after sending start signal
+{	
+ 274:	cf 93       	push	r28
+ 276:	df 93       	push	r29
+	uint16_t loopCnt;
+	loopCnt=TIME_OUT_LOOP;
+ 278:	c4 ef       	ldi	r28, 0xF4	; 244
+ 27a:	d1 e0       	ldi	r29, 0x01	; 1
+	
+	while(!dht11SamplePin()) //wait while the pin is low, no 80us checking preformed
+ 27c:	02 c0       	rjmp	.+4      	; 0x282 <dht11CheckAck+0xe>
+	{
+		loopCnt--;
+ 27e:	21 97       	sbiw	r28, 0x01	; 1
+		if (loopCnt==0) return false; // return false if time out
+ 280:	79 f0       	breq	.+30     	; 0x2a0 <dht11CheckAck+0x2c>
+bool dht11CheckAck() //check respond after sending start signal
+{	
+	uint16_t loopCnt;
+	loopCnt=TIME_OUT_LOOP;
+	
+	while(!dht11SamplePin()) //wait while the pin is low, no 80us checking preformed
+ 282:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <dht11SamplePin>
+ 286:	88 23       	and	r24, r24
+ 288:	d1 f3       	breq	.-12     	; 0x27e <dht11CheckAck+0xa>
+ 28a:	c4 ef       	ldi	r28, 0xF4	; 244
+ 28c:	d1 e0       	ldi	r29, 0x01	; 1
+ 28e:	02 c0       	rjmp	.+4      	; 0x294 <dht11CheckAck+0x20>
+	}
+	
+	loopCnt=TIME_OUT_LOOP;
+	while(dht11SamplePin()) //wait while the pin is high, no 80us checking preformed
+	{
+		loopCnt--;
+ 290:	21 97       	sbiw	r28, 0x01	; 1
+		if (loopCnt==0) return false; // return false if time out
+ 292:	41 f0       	breq	.+16     	; 0x2a4 <dht11CheckAck+0x30>
+		loopCnt--;
+		if (loopCnt==0) return false; // return false if time out
+	}
+	
+	loopCnt=TIME_OUT_LOOP;
+	while(dht11SamplePin()) //wait while the pin is high, no 80us checking preformed
+ 294:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <dht11SamplePin>
+ 298:	88 23       	and	r24, r24
+ 29a:	d1 f7       	brne	.-12     	; 0x290 <dht11CheckAck+0x1c>
+	{
+		loopCnt--;
+		if (loopCnt==0) return false; // return false if time out
+	}
+	
+	return true;
+ 29c:	81 e0       	ldi	r24, 0x01	; 1
+ 29e:	03 c0       	rjmp	.+6      	; 0x2a6 <dht11CheckAck+0x32>
+	loopCnt=TIME_OUT_LOOP;
+	
+	while(!dht11SamplePin()) //wait while the pin is low, no 80us checking preformed
+	{
+		loopCnt--;
+		if (loopCnt==0) return false; // return false if time out
+ 2a0:	80 e0       	ldi	r24, 0x00	; 0
+ 2a2:	01 c0       	rjmp	.+2      	; 0x2a6 <dht11CheckAck+0x32>
+	
+	loopCnt=TIME_OUT_LOOP;
+	while(dht11SamplePin()) //wait while the pin is high, no 80us checking preformed
+	{
+		loopCnt--;
+		if (loopCnt==0) return false; // return false if time out
+ 2a4:	80 e0       	ldi	r24, 0x00	; 0
+	}
+	
+	return true;
+}
+ 2a6:	df 91       	pop	r29
+ 2a8:	cf 91       	pop	r28
+ 2aa:	08 95       	ret
+
+000002ac <dht11Checksum>:
+
+// check if receive the correct data, details refer to the data sheet
+bool  dht11Checksum(uint8_t data[]) 
+{
+ 2ac:	dc 01       	movw	r26, r24
+	int bit_num;
+	uint8_t checksum=0;
+	
+	for(bit_num=0;bit_num<4;bit_num++)
+ 2ae:	fc 01       	movw	r30, r24
+
+// check if receive the correct data, details refer to the data sheet
+bool  dht11Checksum(uint8_t data[]) 
+{
+	int bit_num;
+	uint8_t checksum=0;
+ 2b0:	90 e0       	ldi	r25, 0x00	; 0
+	
+	for(bit_num=0;bit_num<4;bit_num++)
+ 2b2:	20 e0       	ldi	r18, 0x00	; 0
+ 2b4:	30 e0       	ldi	r19, 0x00	; 0
+	{
+		checksum=checksum+data[bit_num];
+ 2b6:	81 91       	ld	r24, Z+
+ 2b8:	98 0f       	add	r25, r24
+bool  dht11Checksum(uint8_t data[]) 
+{
+	int bit_num;
+	uint8_t checksum=0;
+	
+	for(bit_num=0;bit_num<4;bit_num++)
+ 2ba:	2f 5f       	subi	r18, 0xFF	; 255
+ 2bc:	3f 4f       	sbci	r19, 0xFF	; 255
+ 2be:	24 30       	cpi	r18, 0x04	; 4
+ 2c0:	31 05       	cpc	r19, r1
+ 2c2:	c9 f7       	brne	.-14     	; 0x2b6 <dht11Checksum+0xa>
+	
+	return true;
+}
+
+// check if receive the correct data, details refer to the data sheet
+bool  dht11Checksum(uint8_t data[]) 
+ 2c4:	81 e0       	ldi	r24, 0x01	; 1
+ 2c6:	14 96       	adiw	r26, 0x04	; 4
+ 2c8:	2c 91       	ld	r18, X
+ 2ca:	14 97       	sbiw	r26, 0x04	; 4
+ 2cc:	92 13       	cpse	r25, r18
+ 2ce:	80 e0       	ldi	r24, 0x00	; 0
+		checksum=checksum+data[bit_num];
+	}
+	
+	if (checksum==data[4]) return true;
+	else return false;
+}
+ 2d0:	08 95       	ret
+
+000002d2 <TestingDelay1000ms>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 2d2:	8f ef       	ldi	r24, 0xFF	; 255
+ 2d4:	94 e3       	ldi	r25, 0x34	; 52
+ 2d6:	ac e0       	ldi	r26, 0x0C	; 12
+ 2d8:	81 50       	subi	r24, 0x01	; 1
+ 2da:	90 40       	sbci	r25, 0x00	; 0
+ 2dc:	a0 40       	sbci	r26, 0x00	; 0
+ 2de:	e1 f7       	brne	.-8      	; 0x2d8 <TestingDelay1000ms+0x6>
+ 2e0:	00 c0       	rjmp	.+0      	; 0x2e2 <TestingDelay1000ms+0x10>
+ 2e2:	00 00       	nop
+//}
+
+void TestingDelay1000ms() //delay 500ms
+{
+	_delay_ms(500);
+}
+ 2e4:	08 95       	ret
+
+000002e6 <main>:
+	//ser_tx('H');ser_tx((c/10)+48);ser_tx((c%10)+48);
+	//ser_string("\r\n");
+    //}
+}
+int main(void)
+{
+ 2e6:	ef 92       	push	r14
+ 2e8:	ff 92       	push	r15
+ 2ea:	0f 93       	push	r16
+ 2ec:	1f 93       	push	r17
+ 2ee:	cf 93       	push	r28
+ 2f0:	df 93       	push	r29
+	UBRRH=0x00;
+ 2f2:	10 bc       	out	0x20, r1	; 32
+	UBRRL=51;
+ 2f4:	83 e3       	ldi	r24, 0x33	; 51
+ 2f6:	89 b9       	out	0x09, r24	; 9
+	UCSRB=0x18;
+ 2f8:	88 e1       	ldi	r24, 0x18	; 24
+ 2fa:	8a b9       	out	0x0a, r24	; 10
+	UCSRC=0x86;
+ 2fc:	86 e8       	ldi	r24, 0x86	; 134
+ 2fe:	80 bd       	out	0x20, r24	; 32
+	dht11StartSignal(); //send start signal
+	if (dht11CheckAck()) //if respond, store 5 bits data into data[]
+	{
+		for (data_byte=0;data_byte<5;data_byte++)
+		{
+			data[data_byte]=dht11ReadOneBitData();
+ 300:	0e e8       	ldi	r16, 0x8E	; 142
+ 302:	10 e0       	ldi	r17, 0x00	; 0
+ 304:	c8 01       	movw	r24, r16
+ 306:	f0 2e       	mov	r15, r16
+ 308:	e9 2e       	mov	r14, r25
+	UCSRC=0x86;
+
+	while(1)
+    { 
+   
+	dht11StartSignal(); //send start signal
+ 30a:	0e 94 27 01 	call	0x24e	; 0x24e <dht11StartSignal>
+	if (dht11CheckAck()) //if respond, store 5 bits data into data[]
+ 30e:	0e 94 3a 01 	call	0x274	; 0x274 <dht11CheckAck>
+ 312:	88 23       	and	r24, r24
+ 314:	b9 f0       	breq	.+46     	; 0x344 <main+0x5e>
+	{
+		for (data_byte=0;data_byte<5;data_byte++)
+ 316:	10 92 8d 00 	sts	0x008D, r1
+ 31a:	10 92 8c 00 	sts	0x008C, r1
+ 31e:	c0 e0       	ldi	r28, 0x00	; 0
+ 320:	d0 e0       	ldi	r29, 0x00	; 0
+		{
+			data[data_byte]=dht11ReadOneBitData();
+ 322:	0e 94 f2 00 	call	0x1e4	; 0x1e4 <dht11ReadOneBitData>
+ 326:	c0 0f       	add	r28, r16
+ 328:	d1 1f       	adc	r29, r17
+ 32a:	88 83       	st	Y, r24
+    { 
+   
+	dht11StartSignal(); //send start signal
+	if (dht11CheckAck()) //if respond, store 5 bits data into data[]
+	{
+		for (data_byte=0;data_byte<5;data_byte++)
+ 32c:	c0 91 8c 00 	lds	r28, 0x008C
+ 330:	d0 91 8d 00 	lds	r29, 0x008D
+ 334:	21 96       	adiw	r28, 0x01	; 1
+ 336:	d0 93 8d 00 	sts	0x008D, r29
+ 33a:	c0 93 8c 00 	sts	0x008C, r28
+ 33e:	c5 30       	cpi	r28, 0x05	; 5
+ 340:	d1 05       	cpc	r29, r1
+ 342:	78 f3       	brcs	.-34     	; 0x322 <main+0x3c>
+		{
+			data[data_byte]=dht11ReadOneBitData();
+		}
+	}
+	
+	if (dht11Checksum(data))  // if the received data is correct, map the data to LEDs connect to PORTA
+ 344:	8f 2d       	mov	r24, r15
+ 346:	9e 2d       	mov	r25, r14
+ 348:	0e 94 56 01 	call	0x2ac	; 0x2ac <dht11Checksum>
+ 34c:	88 23       	and	r24, r24
+ 34e:	b1 f0       	breq	.+44     	; 0x37c <main+0x96>
+ 350:	8f ef       	ldi	r24, 0xFF	; 255
+ 352:	93 ed       	ldi	r25, 0xD3	; 211
+ 354:	a0 e3       	ldi	r26, 0x30	; 48
+ 356:	81 50       	subi	r24, 0x01	; 1
+ 358:	90 40       	sbci	r25, 0x00	; 0
+ 35a:	a0 40       	sbci	r26, 0x00	; 0
+ 35c:	e1 f7       	brne	.-8      	; 0x356 <main+0x70>
+ 35e:	00 c0       	rjmp	.+0      	; 0x360 <main+0x7a>
+ 360:	00 00       	nop
+	
+		//PORTB = ~data[2];
+		separate_byte_serial(data[2],1);
+		_delay_ms(2000);
+		//PORTB=0xff;
+		TestingDelay1000ms();
+ 362:	0e 94 69 01 	call	0x2d2	; 0x2d2 <TestingDelay1000ms>
+ 366:	8f ef       	ldi	r24, 0xFF	; 255
+ 368:	93 ed       	ldi	r25, 0xD3	; 211
+ 36a:	a0 e3       	ldi	r26, 0x30	; 48
+ 36c:	81 50       	subi	r24, 0x01	; 1
+ 36e:	90 40       	sbci	r25, 0x00	; 0
+ 370:	a0 40       	sbci	r26, 0x00	; 0
+ 372:	e1 f7       	brne	.-8      	; 0x36c <main+0x86>
+ 374:	00 c0       	rjmp	.+0      	; 0x376 <main+0x90>
+ 376:	00 00       	nop
+		separate_byte_serial(data[0],2);
+		//PORTB = ~data[0];
+		_delay_ms(2000);
+		//PORTB=0xff;
+		TestingDelay1000ms();
+ 378:	0e 94 69 01 	call	0x2d2	; 0x2d2 <TestingDelay1000ms>
+	 
+	
+		
+}
+ if((PINB&sw)==0)
+ 37c:	b0 99       	sbic	0x16, 0	; 22
+ 37e:	c5 cf       	rjmp	.-118    	; 0x30a <main+0x24>
+	{
+	  send_message();
+ 380:	0e 94 60 00 	call	0xc0	; 0xc0 <send_message>
+ 384:	c2 cf       	rjmp	.-124    	; 0x30a <main+0x24>
+
+00000386 <__udivmodqi4>:
+ 386:	99 1b       	sub	r25, r25
+ 388:	79 e0       	ldi	r23, 0x09	; 9
+ 38a:	04 c0       	rjmp	.+8      	; 0x394 <__udivmodqi4_ep>
+
+0000038c <__udivmodqi4_loop>:
+ 38c:	99 1f       	adc	r25, r25
+ 38e:	96 17       	cp	r25, r22
+ 390:	08 f0       	brcs	.+2      	; 0x394 <__udivmodqi4_ep>
+ 392:	96 1b       	sub	r25, r22
+
+00000394 <__udivmodqi4_ep>:
+ 394:	88 1f       	adc	r24, r24
+ 396:	7a 95       	dec	r23
+ 398:	c9 f7       	brne	.-14     	; 0x38c <__udivmodqi4_loop>
+ 39a:	80 95       	com	r24
+ 39c:	08 95       	ret
+
+0000039e <_exit>:
+ 39e:	f8 94       	cli
+
+000003a0 <__stop_program>:
+ 3a0:	ff cf       	rjmp	.-2      	; 0x3a0 <__stop_program>
