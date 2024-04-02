@@ -1,0 +1,974 @@
+
+GSM_M_DHT.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000053e  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         000000a0  00800060  0000053e  000005d2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000007  00800100  00800100  00000672  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000672  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000b0  00000000  00000000  000006a2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000e8d  00000000  00000000  00000752  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000316  00000000  00000000  000015df  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000003d3  00000000  00000000  000018f5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000019c  00000000  00000000  00001cc8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000002e6  00000000  00000000  00001e64  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000748  00000000  00000000  0000214a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000a0  00000000  00000000  00002892  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	11 e0       	ldi	r17, 0x01	; 1
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ee e3       	ldi	r30, 0x3E	; 62
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 30       	cpi	r26, 0x00	; 0
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	21 e0       	ldi	r18, 0x01	; 1
+  78:	a0 e0       	ldi	r26, 0x00	; 0
+  7a:	b1 e0       	ldi	r27, 0x01	; 1
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a7 30       	cpi	r26, 0x07	; 7
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 01 01 	call	0x202	; 0x202 <main>
+  8a:	0c 94 9d 02 	jmp	0x53a	; 0x53a <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <ser_tx>:
+	ser_tx('\r');
+	_delay_ms(400);
+	//  ser_string("ILLEGAL ATTEMPT TO ACCESS YOUR SYSTEM. KINDLY PAY ATTENTION");
+	ser_tx('T');
+	ser_tx((data[2]/10)+48);
+	ser_tx((data[2]%10)+48);
+  92:	8c b9       	out	0x0c, r24	; 12
+  94:	5d 9b       	sbis	0x0b, 5	; 11
+  96:	fe cf       	rjmp	.-4      	; 0x94 <ser_tx+0x2>
+  98:	08 95       	ret
+
+0000009a <ser_string>:
+  9a:	cf 93       	push	r28
+  9c:	df 93       	push	r29
+  9e:	ec 01       	movw	r28, r24
+  a0:	88 81       	ld	r24, Y
+  a2:	88 23       	and	r24, r24
+  a4:	31 f0       	breq	.+12     	; 0xb2 <ser_string+0x18>
+  a6:	21 96       	adiw	r28, 0x01	; 1
+  a8:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+	ser_tx('H');
+  ac:	89 91       	ld	r24, Y+
+  ae:	81 11       	cpse	r24, r1
+  b0:	fb cf       	rjmp	.-10     	; 0xa8 <ser_string+0xe>
+	ser_tx((data[0]/10)+48);
+  b2:	df 91       	pop	r29
+  b4:	cf 91       	pop	r28
+  b6:	08 95       	ret
+
+000000b8 <ADC_init>:
+  b8:	1a ba       	out	0x1a, r1	; 26
+  ba:	80 e4       	ldi	r24, 0x40	; 64
+  bc:	87 b9       	out	0x07, r24	; 7
+  be:	84 e8       	ldi	r24, 0x84	; 132
+  c0:	86 b9       	out	0x06, r24	; 6
+  c2:	08 95       	ret
+
+000000c4 <ADC_Read>:
+  c4:	80 64       	ori	r24, 0x40	; 64
+  c6:	87 b9       	out	0x07, r24	; 7
+  c8:	36 9a       	sbi	0x06, 6	; 6
+	ser_tx((data[0]%10)+48);
+  ca:	34 9b       	sbis	0x06, 4	; 6
+  cc:	fe cf       	rjmp	.-4      	; 0xca <ADC_Read+0x6>
+  ce:	84 b1       	in	r24, 0x04	; 4
+  d0:	95 b1       	in	r25, 0x05	; 5
+  d2:	08 95       	ret
+
+000000d4 <dht11SamplePin>:
+  d4:	83 b3       	in	r24, 0x13	; 19
+  d6:	81 70       	andi	r24, 0x01	; 1
+  d8:	08 95       	ret
+
+000000da <dht11SampleData>:
+  da:	1f 93       	push	r17
+  dc:	cf 93       	push	r28
+  de:	df 93       	push	r29
+  e0:	c4 ef       	ldi	r28, 0xF4	; 244
+  e2:	d1 e0       	ldi	r29, 0x01	; 1
+  e4:	03 c0       	rjmp	.+6      	; 0xec <dht11SampleData+0x12>
+  e6:	21 97       	sbiw	r28, 0x01	; 1
+  e8:	20 97       	sbiw	r28, 0x00	; 0
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  ea:	89 f0       	breq	.+34     	; 0x10e <dht11SampleData+0x34>
+  ec:	0e 94 6a 00 	call	0xd4	; 0xd4 <dht11SamplePin>
+  f0:	18 2f       	mov	r17, r24
+  f2:	88 23       	and	r24, r24
+  f4:	c1 f3       	breq	.-16     	; 0xe6 <dht11SampleData+0xc>
+  f6:	88 e7       	ldi	r24, 0x78	; 120
+  f8:	8a 95       	dec	r24
+  fa:	f1 f7       	brne	.-4      	; 0xf8 <dht11SampleData+0x1e>
+	
+	_delay_ms(500);
+	
+	ser_tx(0x1A);
+  fc:	0e 94 6a 00 	call	0xd4	; 0xd4 <dht11SamplePin>
+ 100:	18 2f       	mov	r17, r24
+}
+ 102:	88 23       	and	r24, r24
+ 104:	21 f0       	breq	.+8      	; 0x10e <dht11SampleData+0x34>
+ 106:	0e 94 6a 00 	call	0xd4	; 0xd4 <dht11SamplePin>
+	
+	_delay_us(45); //delay 45us
+	
+	if (dht11SamplePin())
+	{
+		while(dht11SamplePin());
+ 10a:	81 11       	cpse	r24, r1
+ 10c:	fc cf       	rjmp	.-8      	; 0x106 <dht11SampleData+0x2c>
+		return true;
+	}
+	else return false;
+	
+}
+ 10e:	81 2f       	mov	r24, r17
+ 110:	df 91       	pop	r29
+ 112:	cf 91       	pop	r28
+ 114:	1f 91       	pop	r17
+ 116:	08 95       	ret
+
+00000118 <dht11ReadOneBitData>:
+		}
+	}
+}
+
+uint8_t dht11ReadOneBitData()
+{
+ 118:	ff 92       	push	r15
+ 11a:	0f 93       	push	r16
+ 11c:	1f 93       	push	r17
+ 11e:	cf 93       	push	r28
+ 120:	df 93       	push	r29
+ 122:	c7 e0       	ldi	r28, 0x07	; 7
+ 124:	d0 e0       	ldi	r29, 0x00	; 0
+	unsigned int data_bit;
+	uint8_t data=0;
+ 126:	f1 2c       	mov	r15, r1
+		{
+			SETBIT (data,(data_bit)-1);
+		}
+		else
+		{
+			CLEARBIT (data,(data_bit)-1);
+ 128:	01 e0       	ldi	r16, 0x01	; 1
+ 12a:	10 e0       	ldi	r17, 0x00	; 0
+	unsigned int data_bit;
+	uint8_t data=0;
+	
+	for (data_bit=8;data_bit>0;(data_bit)--) //read 8 bit of data, the sensor send MSB first
+	{
+		if(dht11SampleData())
+ 12c:	0e 94 6d 00 	call	0xda	; 0xda <dht11SampleData>
+ 130:	88 23       	and	r24, r24
+ 132:	49 f0       	breq	.+18     	; 0x146 <dht11ReadOneBitData+0x2e>
+		{
+			SETBIT (data,(data_bit)-1);
+ 134:	98 01       	movw	r18, r16
+ 136:	0c 2e       	mov	r0, r28
+ 138:	02 c0       	rjmp	.+4      	; 0x13e <dht11ReadOneBitData+0x26>
+ 13a:	22 0f       	add	r18, r18
+ 13c:	33 1f       	adc	r19, r19
+ 13e:	0a 94       	dec	r0
+ 140:	e2 f7       	brpl	.-8      	; 0x13a <dht11ReadOneBitData+0x22>
+ 142:	f2 2a       	or	r15, r18
+ 144:	09 c0       	rjmp	.+18     	; 0x158 <dht11ReadOneBitData+0x40>
+		}
+		else
+		{
+			CLEARBIT (data,(data_bit)-1);
+ 146:	98 01       	movw	r18, r16
+ 148:	0c 2e       	mov	r0, r28
+ 14a:	02 c0       	rjmp	.+4      	; 0x150 <dht11ReadOneBitData+0x38>
+ 14c:	22 0f       	add	r18, r18
+ 14e:	33 1f       	adc	r19, r19
+ 150:	0a 94       	dec	r0
+ 152:	e2 f7       	brpl	.-8      	; 0x14c <dht11ReadOneBitData+0x34>
+ 154:	20 95       	com	r18
+ 156:	f2 22       	and	r15, r18
+ 158:	21 97       	sbiw	r28, 0x01	; 1
+ 15a:	40 f7       	brcc	.-48     	; 0x12c <dht11ReadOneBitData+0x14>
+		}
+	}
+	
+	return data;
+	
+}
+ 15c:	8f 2d       	mov	r24, r15
+ 15e:	df 91       	pop	r29
+ 160:	cf 91       	pop	r28
+ 162:	1f 91       	pop	r17
+ 164:	0f 91       	pop	r16
+ 166:	ff 90       	pop	r15
+ 168:	08 95       	ret
+
+0000016a <dht11InputMode>:
+	else return false;
+}
+
+void dht11InputMode() //set the pin connect to the sensor as input mode
+{
+	CLEARBIT(DHT11_DDR,DHT11_PIN_NUM);
+ 16a:	a0 98       	cbi	0x14, 0	; 20
+ 16c:	08 95       	ret
+
+0000016e <dht11OutputMode>:
+}
+
+void dht11OutputMode() //set the pin connect to the sensor as output mode
+{
+	SETBIT(DHT11_DDR,DHT11_PIN_NUM);
+ 16e:	a0 9a       	sbi	0x14, 0	; 20
+ 170:	08 95       	ret
+
+00000172 <dht11PullHigh>:
+}
+
+void dht11PullHigh() //pull the pin connect to the sensor high
+{
+	SETBIT(DHT11_PORT,DHT11_PIN_NUM);
+ 172:	a8 9a       	sbi	0x15, 0	; 21
+ 174:	08 95       	ret
+
+00000176 <dht11PullLow>:
+}
+
+void dht11PullLow() //pull the pin connect to the sensor low
+{
+	CLEARBIT(DHT11_PORT,DHT11_PIN_NUM);
+ 176:	a8 98       	cbi	0x15, 0	; 21
+ 178:	08 95       	ret
+
+0000017a <dht11StartSignal>:
+}
+
+void dht11StartSignal() //send start signal to dht11 sensor
+{
+	dht11OutputMode();
+ 17a:	0e 94 b7 00 	call	0x16e	; 0x16e <dht11OutputMode>
+	dht11PullLow(); //set dht11_pin LOW for at least 18ms, refer to dht11 data sheet
+ 17e:	0e 94 bb 00 	call	0x176	; 0x176 <dht11PullLow>
+ 182:	8f e9       	ldi	r24, 0x9F	; 159
+ 184:	9c e8       	ldi	r25, 0x8C	; 140
+ 186:	01 97       	sbiw	r24, 0x01	; 1
+ 188:	f1 f7       	brne	.-4      	; 0x186 <dht11StartSignal+0xc>
+ 18a:	00 c0       	rjmp	.+0      	; 0x18c <dht11StartSignal+0x12>
+ 18c:	00 00       	nop
+	_delay_ms(18);
+	dht11PullHigh(); //set dht11_pin HIGH for 20-40us, refer to dht11 data sheet
+ 18e:	0e 94 b9 00 	call	0x172	; 0x172 <dht11PullHigh>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 192:	9a e6       	ldi	r25, 0x6A	; 106
+ 194:	9a 95       	dec	r25
+ 196:	f1 f7       	brne	.-4      	; 0x194 <dht11StartSignal+0x1a>
+ 198:	00 c0       	rjmp	.+0      	; 0x19a <dht11StartSignal+0x20>
+	_delay_us(40);
+	dht11InputMode(); //set dht11_pin as input, release the pin, wait for respond
+ 19a:	0e 94 b5 00 	call	0x16a	; 0x16a <dht11InputMode>
+ 19e:	08 95       	ret
+
+000001a0 <dht11CheckAck>:
+}
+
+bool dht11CheckAck() //check respond after sending start signal
+{
+ 1a0:	1f 93       	push	r17
+ 1a2:	cf 93       	push	r28
+ 1a4:	df 93       	push	r29
+	uint16_t loopCnt;
+	loopCnt=TIME_OUT_LOOP;
+	
+	while(!dht11SamplePin()) //wait while the pin is low, no 80us checking preformed
+ 1a6:	c4 ef       	ldi	r28, 0xF4	; 244
+ 1a8:	d1 e0       	ldi	r29, 0x01	; 1
+ 1aa:	03 c0       	rjmp	.+6      	; 0x1b2 <dht11CheckAck+0x12>
+ 1ac:	21 97       	sbiw	r28, 0x01	; 1
+	{
+		loopCnt--;
+		if (loopCnt==0) return false; // return false if time out
+ 1ae:	20 97       	sbiw	r28, 0x00	; 0
+ 1b0:	89 f0       	breq	.+34     	; 0x1d4 <dht11CheckAck+0x34>
+bool dht11CheckAck() //check respond after sending start signal
+{
+	uint16_t loopCnt;
+	loopCnt=TIME_OUT_LOOP;
+	
+	while(!dht11SamplePin()) //wait while the pin is low, no 80us checking preformed
+ 1b2:	0e 94 6a 00 	call	0xd4	; 0xd4 <dht11SamplePin>
+ 1b6:	18 2f       	mov	r17, r24
+ 1b8:	88 23       	and	r24, r24
+ 1ba:	c1 f3       	breq	.-16     	; 0x1ac <dht11CheckAck+0xc>
+ 1bc:	c4 ef       	ldi	r28, 0xF4	; 244
+ 1be:	d1 e0       	ldi	r29, 0x01	; 1
+ 1c0:	03 c0       	rjmp	.+6      	; 0x1c8 <dht11CheckAck+0x28>
+ 1c2:	21 97       	sbiw	r28, 0x01	; 1
+	
+	loopCnt=TIME_OUT_LOOP;
+	while(dht11SamplePin()) //wait while the pin is high, no 80us checking preformed
+	{
+		loopCnt--;
+		if (loopCnt==0) return false; // return false if time out
+ 1c4:	20 97       	sbiw	r28, 0x00	; 0
+ 1c6:	29 f0       	breq	.+10     	; 0x1d2 <dht11CheckAck+0x32>
+		loopCnt--;
+		if (loopCnt==0) return false; // return false if time out
+	}
+	
+	loopCnt=TIME_OUT_LOOP;
+	while(dht11SamplePin()) //wait while the pin is high, no 80us checking preformed
+ 1c8:	0e 94 6a 00 	call	0xd4	; 0xd4 <dht11SamplePin>
+ 1cc:	81 11       	cpse	r24, r1
+ 1ce:	f9 cf       	rjmp	.-14     	; 0x1c2 <dht11CheckAck+0x22>
+ 1d0:	01 c0       	rjmp	.+2      	; 0x1d4 <dht11CheckAck+0x34>
+	{
+		loopCnt--;
+		if (loopCnt==0) return false; // return false if time out
+ 1d2:	10 e0       	ldi	r17, 0x00	; 0
+	}
+	
+	return true;
+}
+ 1d4:	81 2f       	mov	r24, r17
+ 1d6:	df 91       	pop	r29
+ 1d8:	cf 91       	pop	r28
+ 1da:	1f 91       	pop	r17
+ 1dc:	08 95       	ret
+
+000001de <dht11Checksum>:
+
+// check if receive the correct data, details refer to the data sheet
+bool  dht11Checksum(uint8_t data[])
+{
+ 1de:	dc 01       	movw	r26, r24
+ 1e0:	fc 01       	movw	r30, r24
+	int bit_num;
+	uint8_t checksum=0;
+ 1e2:	90 e0       	ldi	r25, 0x00	; 0
+	
+	for(bit_num=0;bit_num<4;bit_num++)
+ 1e4:	20 e0       	ldi	r18, 0x00	; 0
+ 1e6:	30 e0       	ldi	r19, 0x00	; 0
+	{
+		checksum=checksum+data[bit_num];
+ 1e8:	81 91       	ld	r24, Z+
+ 1ea:	98 0f       	add	r25, r24
+bool  dht11Checksum(uint8_t data[])
+{
+	int bit_num;
+	uint8_t checksum=0;
+	
+	for(bit_num=0;bit_num<4;bit_num++)
+ 1ec:	2f 5f       	subi	r18, 0xFF	; 255
+ 1ee:	3f 4f       	sbci	r19, 0xFF	; 255
+ 1f0:	24 30       	cpi	r18, 0x04	; 4
+ 1f2:	31 05       	cpc	r19, r1
+ 1f4:	c9 f7       	brne	.-14     	; 0x1e8 <dht11Checksum+0xa>
+	{
+		checksum=checksum+data[bit_num];
+	}
+	
+	if (checksum==data[4]) return true;
+ 1f6:	81 e0       	ldi	r24, 0x01	; 1
+ 1f8:	14 96       	adiw	r26, 0x04	; 4
+ 1fa:	2c 91       	ld	r18, X
+ 1fc:	92 13       	cpse	r25, r18
+ 1fe:	80 e0       	ldi	r24, 0x00	; 0
+	else return false;
+}
+ 200:	08 95       	ret
+
+00000202 <main>:
+}
+
+
+int main(void)
+{
+	UBRRH=0x00;
+ 202:	10 bc       	out	0x20, r1	; 32
+	UBRRL=51;
+ 204:	83 e3       	ldi	r24, 0x33	; 51
+ 206:	89 b9       	out	0x09, r24	; 9
+	UCSRB=0x18;
+ 208:	88 e1       	ldi	r24, 0x18	; 24
+ 20a:	8a b9       	out	0x0a, r24	; 10
+	UCSRC=0x86;
+ 20c:	86 e8       	ldi	r24, 0x86	; 134
+ 20e:	80 bd       	out	0x20, r24	; 32
+	int threshold1=45;
+	int threshold2=20;
+	int threshold3=900;
+	
+	int val;
+	ADC_init();
+ 210:	0e 94 5c 00 	call	0xb8	; 0xb8 <ADC_init>
+	
+		}
+		
+		val = ADC_Read(1);
+		ser_string("\r\n Moisture sensor\r\n");
+		ser_tx((val/1000)+48);
+ 214:	0f 2e       	mov	r0, r31
+ 216:	f8 ee       	ldi	r31, 0xE8	; 232
+ 218:	af 2e       	mov	r10, r31
+ 21a:	f3 e0       	ldi	r31, 0x03	; 3
+ 21c:	bf 2e       	mov	r11, r31
+ 21e:	f0 2d       	mov	r31, r0
+		ser_tx(((val%1000)/100)+48);
+ 220:	0f 2e       	mov	r0, r31
+ 222:	f4 e6       	ldi	r31, 0x64	; 100
+ 224:	cf 2e       	mov	r12, r31
+ 226:	d1 2c       	mov	r13, r1
+ 228:	f0 2d       	mov	r31, r0
+		ser_tx((((val%1000)%100)/10)+48);
+ 22a:	0a e0       	ldi	r16, 0x0A	; 10
+ 22c:	10 e0       	ldi	r17, 0x00	; 0
+			_delay_ms(500);
+			ser_tx(0x1A);
+			//end of testing code
+		}
+		
+		if(data[2]>=threshold2)
+ 22e:	0f 2e       	mov	r0, r31
+ 230:	f4 e0       	ldi	r31, 0x04	; 4
+ 232:	8f 2e       	mov	r8, r31
+ 234:	f1 e0       	ldi	r31, 0x01	; 1
+ 236:	9f 2e       	mov	r9, r31
+ 238:	f0 2d       	mov	r31, r0
+	int val;
+	ADC_init();
+	while(1)
+	{
+		
+		dht11StartSignal(); //send start signal
+ 23a:	0e 94 bd 00 	call	0x17a	; 0x17a <dht11StartSignal>
+		if (dht11CheckAck()) //if respond, store 5 bits data into data[]
+ 23e:	0e 94 d0 00 	call	0x1a0	; 0x1a0 <dht11CheckAck>
+ 242:	88 23       	and	r24, r24
+ 244:	c9 f0       	breq	.+50     	; 0x278 <main+0x76>
+		{
+			for (data_byte=0;data_byte<5;data_byte++)
+ 246:	10 92 01 01 	sts	0x0101, r1
+ 24a:	10 92 00 01 	sts	0x0100, r1
+ 24e:	c0 e0       	ldi	r28, 0x00	; 0
+ 250:	d0 e0       	ldi	r29, 0x00	; 0
+			{
+				data[data_byte]=dht11ReadOneBitData();
+ 252:	0e 94 8c 00 	call	0x118	; 0x118 <dht11ReadOneBitData>
+ 256:	ce 5f       	subi	r28, 0xFE	; 254
+ 258:	de 4f       	sbci	r29, 0xFE	; 254
+ 25a:	88 83       	st	Y, r24
+	{
+		
+		dht11StartSignal(); //send start signal
+		if (dht11CheckAck()) //if respond, store 5 bits data into data[]
+		{
+			for (data_byte=0;data_byte<5;data_byte++)
+ 25c:	80 91 00 01 	lds	r24, 0x0100
+ 260:	90 91 01 01 	lds	r25, 0x0101
+ 264:	01 96       	adiw	r24, 0x01	; 1
+ 266:	90 93 01 01 	sts	0x0101, r25
+ 26a:	80 93 00 01 	sts	0x0100, r24
+ 26e:	85 30       	cpi	r24, 0x05	; 5
+ 270:	91 05       	cpc	r25, r1
+ 272:	10 f4       	brcc	.+4      	; 0x278 <main+0x76>
+ 274:	ec 01       	movw	r28, r24
+ 276:	ed cf       	rjmp	.-38     	; 0x252 <main+0x50>
+			{
+				data[data_byte]=dht11ReadOneBitData();
+			}
+		}
+		
+		if (dht11Checksum(data))  // if the received data is correct, map the data to LEDs connect to PORTA
+ 278:	82 e0       	ldi	r24, 0x02	; 2
+ 27a:	91 e0       	ldi	r25, 0x01	; 1
+ 27c:	0e 94 ef 00 	call	0x1de	; 0x1de <dht11Checksum>
+ 280:	88 23       	and	r24, r24
+ 282:	21 f1       	breq	.+72     	; 0x2cc <main+0xca>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 284:	2f ef       	ldi	r18, 0xFF	; 255
+ 286:	83 ed       	ldi	r24, 0xD3	; 211
+ 288:	90 e3       	ldi	r25, 0x30	; 48
+ 28a:	21 50       	subi	r18, 0x01	; 1
+ 28c:	80 40       	sbci	r24, 0x00	; 0
+ 28e:	90 40       	sbci	r25, 0x00	; 0
+ 290:	e1 f7       	brne	.-8      	; 0x28a <main+0x88>
+ 292:	00 c0       	rjmp	.+0      	; 0x294 <main+0x92>
+ 294:	00 00       	nop
+ 296:	ef ef       	ldi	r30, 0xFF	; 255
+ 298:	f4 e3       	ldi	r31, 0x34	; 52
+ 29a:	2c e0       	ldi	r18, 0x0C	; 12
+ 29c:	e1 50       	subi	r30, 0x01	; 1
+ 29e:	f0 40       	sbci	r31, 0x00	; 0
+ 2a0:	20 40       	sbci	r18, 0x00	; 0
+ 2a2:	e1 f7       	brne	.-8      	; 0x29c <main+0x9a>
+ 2a4:	00 c0       	rjmp	.+0      	; 0x2a6 <main+0xa4>
+ 2a6:	00 00       	nop
+ 2a8:	8f ef       	ldi	r24, 0xFF	; 255
+ 2aa:	93 ed       	ldi	r25, 0xD3	; 211
+ 2ac:	e0 e3       	ldi	r30, 0x30	; 48
+ 2ae:	81 50       	subi	r24, 0x01	; 1
+ 2b0:	90 40       	sbci	r25, 0x00	; 0
+ 2b2:	e0 40       	sbci	r30, 0x00	; 0
+ 2b4:	e1 f7       	brne	.-8      	; 0x2ae <main+0xac>
+ 2b6:	00 c0       	rjmp	.+0      	; 0x2b8 <main+0xb6>
+ 2b8:	00 00       	nop
+ 2ba:	ff ef       	ldi	r31, 0xFF	; 255
+ 2bc:	24 e3       	ldi	r18, 0x34	; 52
+ 2be:	8c e0       	ldi	r24, 0x0C	; 12
+ 2c0:	f1 50       	subi	r31, 0x01	; 1
+ 2c2:	20 40       	sbci	r18, 0x00	; 0
+ 2c4:	80 40       	sbci	r24, 0x00	; 0
+ 2c6:	e1 f7       	brne	.-8      	; 0x2c0 <main+0xbe>
+ 2c8:	00 c0       	rjmp	.+0      	; 0x2ca <main+0xc8>
+ 2ca:	00 00       	nop
+			//PORTB=0xff;
+			TestingDelay1000ms();
+	
+		}
+		
+		val = ADC_Read(1);
+ 2cc:	81 e0       	ldi	r24, 0x01	; 1
+ 2ce:	90 e0       	ldi	r25, 0x00	; 0
+ 2d0:	0e 94 62 00 	call	0xc4	; 0xc4 <ADC_Read>
+ 2d4:	ec 01       	movw	r28, r24
+		ser_string("\r\n Moisture sensor\r\n");
+ 2d6:	80 e6       	ldi	r24, 0x60	; 96
+ 2d8:	90 e0       	ldi	r25, 0x00	; 0
+ 2da:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+		ser_tx((val/1000)+48);
+ 2de:	ce 01       	movw	r24, r28
+ 2e0:	b5 01       	movw	r22, r10
+ 2e2:	0e 94 75 02 	call	0x4ea	; 0x4ea <__divmodhi4>
+ 2e6:	7c 01       	movw	r14, r24
+ 2e8:	80 e3       	ldi	r24, 0x30	; 48
+ 2ea:	86 0f       	add	r24, r22
+ 2ec:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+		ser_tx(((val%1000)/100)+48);
+ 2f0:	c7 01       	movw	r24, r14
+ 2f2:	b6 01       	movw	r22, r12
+ 2f4:	0e 94 75 02 	call	0x4ea	; 0x4ea <__divmodhi4>
+ 2f8:	7c 01       	movw	r14, r24
+ 2fa:	80 e3       	ldi	r24, 0x30	; 48
+ 2fc:	86 0f       	add	r24, r22
+ 2fe:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+		ser_tx((((val%1000)%100)/10)+48);
+ 302:	c7 01       	movw	r24, r14
+ 304:	b8 01       	movw	r22, r16
+ 306:	0e 94 75 02 	call	0x4ea	; 0x4ea <__divmodhi4>
+ 30a:	7c 01       	movw	r14, r24
+ 30c:	80 e3       	ldi	r24, 0x30	; 48
+ 30e:	86 0f       	add	r24, r22
+ 310:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+		ser_tx(((((val%1000)%100)%10)/10)+48);
+ 314:	c7 01       	movw	r24, r14
+ 316:	b8 01       	movw	r22, r16
+ 318:	0e 94 75 02 	call	0x4ea	; 0x4ea <__divmodhi4>
+ 31c:	80 e3       	ldi	r24, 0x30	; 48
+ 31e:	86 0f       	add	r24, r22
+ 320:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+ 324:	9f ef       	ldi	r25, 0xFF	; 255
+ 326:	e3 ed       	ldi	r30, 0xD3	; 211
+ 328:	f0 e3       	ldi	r31, 0x30	; 48
+ 32a:	91 50       	subi	r25, 0x01	; 1
+ 32c:	e0 40       	sbci	r30, 0x00	; 0
+ 32e:	f0 40       	sbci	r31, 0x00	; 0
+ 330:	e1 f7       	brne	.-8      	; 0x32a <main+0x128>
+ 332:	00 c0       	rjmp	.+0      	; 0x334 <main+0x132>
+ 334:	00 00       	nop
+		_delay_ms(2000);
+		
+		if(val>=threshold3)
+ 336:	c4 38       	cpi	r28, 0x84	; 132
+ 338:	d3 40       	sbci	r29, 0x03	; 3
+ 33a:	0c f4       	brge	.+2      	; 0x33e <main+0x13c>
+ 33c:	43 c0       	rjmp	.+134    	; 0x3c4 <main+0x1c2>
+		{
+			ser_string("\r\nAT\r\n");
+ 33e:	85 e7       	ldi	r24, 0x75	; 117
+ 340:	90 e0       	ldi	r25, 0x00	; 0
+ 342:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 346:	8f ef       	ldi	r24, 0xFF	; 255
+ 348:	94 e3       	ldi	r25, 0x34	; 52
+ 34a:	ec e0       	ldi	r30, 0x0C	; 12
+ 34c:	81 50       	subi	r24, 0x01	; 1
+ 34e:	90 40       	sbci	r25, 0x00	; 0
+ 350:	e0 40       	sbci	r30, 0x00	; 0
+ 352:	e1 f7       	brne	.-8      	; 0x34c <main+0x14a>
+ 354:	00 c0       	rjmp	.+0      	; 0x356 <main+0x154>
+ 356:	00 00       	nop
+			_delay_ms(500);
+			//ser_string("\r\nATE0\r\n");
+			//_delay_ms(500);
+			ser_string("\r\nAT+CMGF=1\r\n");
+ 358:	8c e7       	ldi	r24, 0x7C	; 124
+ 35a:	90 e0       	ldi	r25, 0x00	; 0
+ 35c:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 360:	ff ef       	ldi	r31, 0xFF	; 255
+ 362:	24 e3       	ldi	r18, 0x34	; 52
+ 364:	8c e0       	ldi	r24, 0x0C	; 12
+ 366:	f1 50       	subi	r31, 0x01	; 1
+ 368:	20 40       	sbci	r18, 0x00	; 0
+ 36a:	80 40       	sbci	r24, 0x00	; 0
+ 36c:	e1 f7       	brne	.-8      	; 0x366 <main+0x164>
+ 36e:	00 c0       	rjmp	.+0      	; 0x370 <main+0x16e>
+ 370:	00 00       	nop
+			_delay_ms(500);
+			ser_string("\r\nAT+CMGS=\"9990422430\"");
+ 372:	8a e8       	ldi	r24, 0x8A	; 138
+ 374:	90 e0       	ldi	r25, 0x00	; 0
+ 376:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 37a:	9f ef       	ldi	r25, 0xFF	; 255
+ 37c:	e4 e3       	ldi	r30, 0x34	; 52
+ 37e:	fc e0       	ldi	r31, 0x0C	; 12
+ 380:	91 50       	subi	r25, 0x01	; 1
+ 382:	e0 40       	sbci	r30, 0x00	; 0
+ 384:	f0 40       	sbci	r31, 0x00	; 0
+ 386:	e1 f7       	brne	.-8      	; 0x380 <main+0x17e>
+ 388:	00 c0       	rjmp	.+0      	; 0x38a <main+0x188>
+ 38a:	00 00       	nop
+			_delay_ms(500);
+			
+			ser_tx('\r');
+ 38c:	8d e0       	ldi	r24, 0x0D	; 13
+ 38e:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+ 392:	2f ef       	ldi	r18, 0xFF	; 255
+ 394:	83 ec       	ldi	r24, 0xC3	; 195
+ 396:	99 e0       	ldi	r25, 0x09	; 9
+ 398:	21 50       	subi	r18, 0x01	; 1
+ 39a:	80 40       	sbci	r24, 0x00	; 0
+ 39c:	90 40       	sbci	r25, 0x00	; 0
+ 39e:	e1 f7       	brne	.-8      	; 0x398 <main+0x196>
+ 3a0:	00 c0       	rjmp	.+0      	; 0x3a2 <main+0x1a0>
+ 3a2:	00 00       	nop
+			_delay_ms(400);
+			
+			ser_string("\r\nMoisture level is high\r\n");
+ 3a4:	81 ea       	ldi	r24, 0xA1	; 161
+ 3a6:	90 e0       	ldi	r25, 0x00	; 0
+ 3a8:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 3ac:	ef ef       	ldi	r30, 0xFF	; 255
+ 3ae:	f4 e3       	ldi	r31, 0x34	; 52
+ 3b0:	2c e0       	ldi	r18, 0x0C	; 12
+ 3b2:	e1 50       	subi	r30, 0x01	; 1
+ 3b4:	f0 40       	sbci	r31, 0x00	; 0
+ 3b6:	20 40       	sbci	r18, 0x00	; 0
+ 3b8:	e1 f7       	brne	.-8      	; 0x3b2 <main+0x1b0>
+ 3ba:	00 c0       	rjmp	.+0      	; 0x3bc <main+0x1ba>
+ 3bc:	00 00       	nop
+			_delay_ms(500);
+			ser_tx(0x1A);
+ 3be:	8a e1       	ldi	r24, 0x1A	; 26
+ 3c0:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+			//end of testing code
+		}
+		
+		if(data[2]>=threshold2)
+ 3c4:	f4 01       	movw	r30, r8
+ 3c6:	80 81       	ld	r24, Z
+ 3c8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ca:	44 97       	sbiw	r24, 0x14	; 20
+ 3cc:	0c f4       	brge	.+2      	; 0x3d0 <main+0x1ce>
+ 3ce:	43 c0       	rjmp	.+134    	; 0x456 <main+0x254>
+		{
+			ser_string("\r\nAT\r\n");
+ 3d0:	85 e7       	ldi	r24, 0x75	; 117
+ 3d2:	90 e0       	ldi	r25, 0x00	; 0
+ 3d4:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 3d8:	ff ef       	ldi	r31, 0xFF	; 255
+ 3da:	24 e3       	ldi	r18, 0x34	; 52
+ 3dc:	8c e0       	ldi	r24, 0x0C	; 12
+ 3de:	f1 50       	subi	r31, 0x01	; 1
+ 3e0:	20 40       	sbci	r18, 0x00	; 0
+ 3e2:	80 40       	sbci	r24, 0x00	; 0
+ 3e4:	e1 f7       	brne	.-8      	; 0x3de <main+0x1dc>
+ 3e6:	00 c0       	rjmp	.+0      	; 0x3e8 <main+0x1e6>
+ 3e8:	00 00       	nop
+			_delay_ms(500);
+			//ser_string("\r\nATE0\r\n");
+			//_delay_ms(500);
+			ser_string("\r\nAT+CMGF=1\r\n");
+ 3ea:	8c e7       	ldi	r24, 0x7C	; 124
+ 3ec:	90 e0       	ldi	r25, 0x00	; 0
+ 3ee:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 3f2:	9f ef       	ldi	r25, 0xFF	; 255
+ 3f4:	e4 e3       	ldi	r30, 0x34	; 52
+ 3f6:	fc e0       	ldi	r31, 0x0C	; 12
+ 3f8:	91 50       	subi	r25, 0x01	; 1
+ 3fa:	e0 40       	sbci	r30, 0x00	; 0
+ 3fc:	f0 40       	sbci	r31, 0x00	; 0
+ 3fe:	e1 f7       	brne	.-8      	; 0x3f8 <main+0x1f6>
+ 400:	00 c0       	rjmp	.+0      	; 0x402 <main+0x200>
+ 402:	00 00       	nop
+			_delay_ms(500);
+			ser_string("\r\nAT+CMGS=\"9990422430\"");
+ 404:	8a e8       	ldi	r24, 0x8A	; 138
+ 406:	90 e0       	ldi	r25, 0x00	; 0
+ 408:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 40c:	2f ef       	ldi	r18, 0xFF	; 255
+ 40e:	84 e3       	ldi	r24, 0x34	; 52
+ 410:	9c e0       	ldi	r25, 0x0C	; 12
+ 412:	21 50       	subi	r18, 0x01	; 1
+ 414:	80 40       	sbci	r24, 0x00	; 0
+ 416:	90 40       	sbci	r25, 0x00	; 0
+ 418:	e1 f7       	brne	.-8      	; 0x412 <main+0x210>
+ 41a:	00 c0       	rjmp	.+0      	; 0x41c <main+0x21a>
+ 41c:	00 00       	nop
+			_delay_ms(500);
+			
+			ser_tx('\r');
+ 41e:	8d e0       	ldi	r24, 0x0D	; 13
+ 420:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+ 424:	ef ef       	ldi	r30, 0xFF	; 255
+ 426:	f3 ec       	ldi	r31, 0xC3	; 195
+ 428:	29 e0       	ldi	r18, 0x09	; 9
+ 42a:	e1 50       	subi	r30, 0x01	; 1
+ 42c:	f0 40       	sbci	r31, 0x00	; 0
+ 42e:	20 40       	sbci	r18, 0x00	; 0
+ 430:	e1 f7       	brne	.-8      	; 0x42a <main+0x228>
+ 432:	00 c0       	rjmp	.+0      	; 0x434 <main+0x232>
+ 434:	00 00       	nop
+			_delay_ms(400);
+			
+			ser_string("\r\nTemperature is high\r\n");	
+ 436:	8c eb       	ldi	r24, 0xBC	; 188
+ 438:	90 e0       	ldi	r25, 0x00	; 0
+ 43a:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 43e:	8f ef       	ldi	r24, 0xFF	; 255
+ 440:	94 e3       	ldi	r25, 0x34	; 52
+ 442:	ec e0       	ldi	r30, 0x0C	; 12
+ 444:	81 50       	subi	r24, 0x01	; 1
+ 446:	90 40       	sbci	r25, 0x00	; 0
+ 448:	e0 40       	sbci	r30, 0x00	; 0
+ 44a:	e1 f7       	brne	.-8      	; 0x444 <main+0x242>
+ 44c:	00 c0       	rjmp	.+0      	; 0x44e <main+0x24c>
+ 44e:	00 00       	nop
+			_delay_ms(500);
+			ser_tx(0x1A);
+ 450:	8a e1       	ldi	r24, 0x1A	; 26
+ 452:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+		}
+		
+		if (data[0]>=threshold1)
+ 456:	80 91 02 01 	lds	r24, 0x0102
+ 45a:	90 e0       	ldi	r25, 0x00	; 0
+ 45c:	8d 97       	sbiw	r24, 0x2d	; 45
+ 45e:	0c f4       	brge	.+2      	; 0x462 <main+0x260>
+ 460:	ec ce       	rjmp	.-552    	; 0x23a <main+0x38>
+		{
+			ser_string("\r\nAT\r\n");
+ 462:	85 e7       	ldi	r24, 0x75	; 117
+ 464:	90 e0       	ldi	r25, 0x00	; 0
+ 466:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 46a:	ff ef       	ldi	r31, 0xFF	; 255
+ 46c:	24 e3       	ldi	r18, 0x34	; 52
+ 46e:	8c e0       	ldi	r24, 0x0C	; 12
+ 470:	f1 50       	subi	r31, 0x01	; 1
+ 472:	20 40       	sbci	r18, 0x00	; 0
+ 474:	80 40       	sbci	r24, 0x00	; 0
+ 476:	e1 f7       	brne	.-8      	; 0x470 <main+0x26e>
+ 478:	00 c0       	rjmp	.+0      	; 0x47a <main+0x278>
+ 47a:	00 00       	nop
+			_delay_ms(500);
+			//ser_string("\r\nATE0\r\n");
+			//_delay_ms(500);
+			ser_string("\r\nAT+CMGF=1\r\n");
+ 47c:	8c e7       	ldi	r24, 0x7C	; 124
+ 47e:	90 e0       	ldi	r25, 0x00	; 0
+ 480:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 484:	9f ef       	ldi	r25, 0xFF	; 255
+ 486:	e4 e3       	ldi	r30, 0x34	; 52
+ 488:	fc e0       	ldi	r31, 0x0C	; 12
+ 48a:	91 50       	subi	r25, 0x01	; 1
+ 48c:	e0 40       	sbci	r30, 0x00	; 0
+ 48e:	f0 40       	sbci	r31, 0x00	; 0
+ 490:	e1 f7       	brne	.-8      	; 0x48a <main+0x288>
+ 492:	00 c0       	rjmp	.+0      	; 0x494 <main+0x292>
+ 494:	00 00       	nop
+			_delay_ms(500);
+			ser_string("\r\nAT+CMGS=\"9990422430\"");
+ 496:	8a e8       	ldi	r24, 0x8A	; 138
+ 498:	90 e0       	ldi	r25, 0x00	; 0
+ 49a:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 49e:	2f ef       	ldi	r18, 0xFF	; 255
+ 4a0:	84 e3       	ldi	r24, 0x34	; 52
+ 4a2:	9c e0       	ldi	r25, 0x0C	; 12
+ 4a4:	21 50       	subi	r18, 0x01	; 1
+ 4a6:	80 40       	sbci	r24, 0x00	; 0
+ 4a8:	90 40       	sbci	r25, 0x00	; 0
+ 4aa:	e1 f7       	brne	.-8      	; 0x4a4 <main+0x2a2>
+ 4ac:	00 c0       	rjmp	.+0      	; 0x4ae <main+0x2ac>
+ 4ae:	00 00       	nop
+			_delay_ms(500);
+			
+			ser_tx('\r');
+ 4b0:	8d e0       	ldi	r24, 0x0D	; 13
+ 4b2:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+ 4b6:	ef ef       	ldi	r30, 0xFF	; 255
+ 4b8:	f3 ec       	ldi	r31, 0xC3	; 195
+ 4ba:	29 e0       	ldi	r18, 0x09	; 9
+ 4bc:	e1 50       	subi	r30, 0x01	; 1
+ 4be:	f0 40       	sbci	r31, 0x00	; 0
+ 4c0:	20 40       	sbci	r18, 0x00	; 0
+ 4c2:	e1 f7       	brne	.-8      	; 0x4bc <main+0x2ba>
+ 4c4:	00 c0       	rjmp	.+0      	; 0x4c6 <main+0x2c4>
+ 4c6:	00 00       	nop
+			_delay_ms(400);
+			
+			ser_string("\r\nhumidity is high\r\n");
+ 4c8:	84 ed       	ldi	r24, 0xD4	; 212
+ 4ca:	90 e0       	ldi	r25, 0x00	; 0
+ 4cc:	0e 94 4d 00 	call	0x9a	; 0x9a <ser_string>
+ 4d0:	8f ef       	ldi	r24, 0xFF	; 255
+ 4d2:	94 e3       	ldi	r25, 0x34	; 52
+ 4d4:	ec e0       	ldi	r30, 0x0C	; 12
+ 4d6:	81 50       	subi	r24, 0x01	; 1
+ 4d8:	90 40       	sbci	r25, 0x00	; 0
+ 4da:	e0 40       	sbci	r30, 0x00	; 0
+ 4dc:	e1 f7       	brne	.-8      	; 0x4d6 <main+0x2d4>
+ 4de:	00 c0       	rjmp	.+0      	; 0x4e0 <main+0x2de>
+ 4e0:	00 00       	nop
+			_delay_ms(500);
+			ser_tx(0x1A);
+ 4e2:	8a e1       	ldi	r24, 0x1A	; 26
+ 4e4:	0e 94 49 00 	call	0x92	; 0x92 <ser_tx>
+ 4e8:	a8 ce       	rjmp	.-688    	; 0x23a <main+0x38>
+
+000004ea <__divmodhi4>:
+ 4ea:	97 fb       	bst	r25, 7
+ 4ec:	07 2e       	mov	r0, r23
+ 4ee:	16 f4       	brtc	.+4      	; 0x4f4 <__divmodhi4+0xa>
+ 4f0:	00 94       	com	r0
+ 4f2:	07 d0       	rcall	.+14     	; 0x502 <__divmodhi4_neg1>
+ 4f4:	77 fd       	sbrc	r23, 7
+ 4f6:	09 d0       	rcall	.+18     	; 0x50a <__divmodhi4_neg2>
+ 4f8:	0e 94 89 02 	call	0x512	; 0x512 <__udivmodhi4>
+ 4fc:	07 fc       	sbrc	r0, 7
+ 4fe:	05 d0       	rcall	.+10     	; 0x50a <__divmodhi4_neg2>
+ 500:	3e f4       	brtc	.+14     	; 0x510 <__divmodhi4_exit>
+
+00000502 <__divmodhi4_neg1>:
+ 502:	90 95       	com	r25
+ 504:	81 95       	neg	r24
+ 506:	9f 4f       	sbci	r25, 0xFF	; 255
+ 508:	08 95       	ret
+
+0000050a <__divmodhi4_neg2>:
+ 50a:	70 95       	com	r23
+ 50c:	61 95       	neg	r22
+ 50e:	7f 4f       	sbci	r23, 0xFF	; 255
+
+00000510 <__divmodhi4_exit>:
+ 510:	08 95       	ret
+
+00000512 <__udivmodhi4>:
+ 512:	aa 1b       	sub	r26, r26
+ 514:	bb 1b       	sub	r27, r27
+ 516:	51 e1       	ldi	r21, 0x11	; 17
+ 518:	07 c0       	rjmp	.+14     	; 0x528 <__udivmodhi4_ep>
+
+0000051a <__udivmodhi4_loop>:
+ 51a:	aa 1f       	adc	r26, r26
+ 51c:	bb 1f       	adc	r27, r27
+ 51e:	a6 17       	cp	r26, r22
+ 520:	b7 07       	cpc	r27, r23
+ 522:	10 f0       	brcs	.+4      	; 0x528 <__udivmodhi4_ep>
+ 524:	a6 1b       	sub	r26, r22
+ 526:	b7 0b       	sbc	r27, r23
+
+00000528 <__udivmodhi4_ep>:
+ 528:	88 1f       	adc	r24, r24
+ 52a:	99 1f       	adc	r25, r25
+ 52c:	5a 95       	dec	r21
+ 52e:	a9 f7       	brne	.-22     	; 0x51a <__udivmodhi4_loop>
+ 530:	80 95       	com	r24
+ 532:	90 95       	com	r25
+ 534:	bc 01       	movw	r22, r24
+ 536:	cd 01       	movw	r24, r26
+ 538:	08 95       	ret
+
+0000053a <_exit>:
+ 53a:	f8 94       	cli
+
+0000053c <__stop_program>:
+ 53c:	ff cf       	rjmp	.-2      	; 0x53c <__stop_program>

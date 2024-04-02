@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "GSM_M_DHT", "GSM_M_DHT\GSM_M_DHT.cproj", "{255EE529-D12D-473D-A4EA-CFD73881F094}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{255EE529-D12D-473D-A4EA-CFD73881F094}.Debug|AVR.ActiveCfg = Debug|AVR
+		{255EE529-D12D-473D-A4EA-CFD73881F094}.Debug|AVR.Build.0 = Debug|AVR
+		{255EE529-D12D-473D-A4EA-CFD73881F094}.Release|AVR.ActiveCfg = Release|AVR
+		{255EE529-D12D-473D-A4EA-CFD73881F094}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
